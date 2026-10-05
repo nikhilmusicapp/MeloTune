@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MeloTune - Every Mood Has a Tune</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= SPLASH SCREEN ================= -->
+
+<div id="splashScreen">
+
+    <div class="splash-logo">
+        <div class="logo-circle">🎧</div>
+
+        <h1>MeloTune</h1>
+
+        <p>Every Mood Has a Tune.</p>
+
+        <div class="loading-line">
+            <span></span>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- ================= APP ================= -->
+
+<div id="app" class="app-hidden">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">🎧</div>
+
+            <div>
+                <h1>MeloTune</h1>
+                <span>Music for your mood</span>
+            </div>
+        </div>
+
+
+        <nav class="navigation">
+
+            <button class="nav-item active" data-page="home">
+                <span>🏠</span>
+                <span>Home</span>
+            </button>
+
+            <button class="nav-item" data-page="songs">
+                <span>🎵</span>
+                <span>All Songs</span>
+            </button>
+
+            <button class="nav-item" data-page="favorites">
+                <span>❤️</span>
+                <span>Favorites</span>
+            </button>
+
+            <button class="nav-item" data-page="playlists">
+                <span>📂</span>
+                <span>My Playlists</span>
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <p>Made with ❤️</p>
+            <small>MeloTune</small>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN AREA -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="greeting">
+
+                <p id="greetingTime">Good Morning ☀️</p>
+
+                <h2>
+                    Hello, <span id="username">User</span> 👋
+                </h2>
+
+                <span>What would you like to listen to today?</span>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <div class="search-box">
+
+                    <span>🔍</span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search songs, artists..."
+                    >
+
+                </div>
+
+                <button class="profile-btn" id="profileBtn">
+                    👤
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================= HOME PAGE ================= -->
+
+        <section id="home" class="page active-page">
+
+
+            <!-- HERO -->
+
+            <div class="hero">
+
+                <div class="hero-content">
+
+                    <span class="hero-label">
+                        ✨ YOUR PERSONAL MUSIC SPACE
+                    </span>
+
+                    <h1>
+                        Every Mood<br>
+                        <span>Has a Tune.</span>
+                    </h1>
+
+                    <p>
+                        Discover songs, create playlists and enjoy
+                        your favorite music anytime.
+                    </p>
+
+                    <button class="primary-btn" id="heroPlayBtn">
+                        ▶ Start Listening
+                    </button>
+
+                </div>
+
+                <div class="hero-art">
+
+                    <div class="vinyl">
+                        <div class="vinyl-center">🎧</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PINNED SONGS -->
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="small-title">HANDPICKED FOR YOU</span>
+                    <h2>📌 Pinned Songs</h2>
+                </div>
+
+                <button class="see-all" data-page="songs">
+                    See all →
+                </button>
+
+            </div>
+
+
+            <div id="pinnedSongs" class="song-grid"></div>
+
+
+
+            <!-- RECENT -->
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="small-title">KEEP LISTENING</span>
+                    <h2>🎧 Recently Played</h2>
+                </div>
+
+            </div>
+
+
+            <div id="recentSongs" class="horizontal-songs"></div>
+
+
+        </section>
+
+
+
+        <!-- ================= ALL SONGS ================= -->
+
+        <section id="songs" class="page">
+
+            <div class="page-title">
+
+                <span class="small-title">YOUR MUSIC</span>
+
+                <h1>🎵 All Songs</h1>
+
+                <p>Choose a song and start listening.</p>
+
+            </div>
+
+
+            <div id="allSongs" class="song-list"></div>
+
+        </section>
+
+
+
+        <!-- ================= FAVORITES ================= -->
+
+        <section id="favorites" class="page">
+
+            <div class="page-title">
+
+                <span class="small-title">YOUR COLLECTION</span>
+
+                <h1>❤️ Favorites</h1>
+
+                <p>Your favorite songs in one place.</p>
+
+            </div>
+
+
+            <div id="favoriteSongs" class="song-list"></div>
+
+        </section>
+
+
+
+        <!-- ================= PLAYLISTS ================= -->
+
+        <section id="playlists" class="page">
+
+            <div class="playlist-top">
+
+                <div class="page-title">
+
+                    <span class="small-title">YOUR MUSIC</span>
+
+                    <h1>📂 My Playlists</h1>
+
+                    <p>Create your own collection.</p>
+
+                </div>
+
+
+                <button id="createPlaylistBtn" class="primary-btn">
+                    ＋ Create Playlist
+                </button>
+
+            </div>
+
+
+            <div id="playlistContainer" class="playlist-grid"></div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ================= MUSIC PLAYER ================= -->
+
+    <footer class="music-player">
+
+
+        <!-- CURRENT SONG -->
+
+        <div class="current-song">
+
+            <img
+                id="playerCover"
+                src="https://placehold.co/70x70/17142b/ffffff?text=🎵"
+                alt="Album Cover"
+            >
+
+            <div class="current-info">
+
+                <h3 id="playerTitle">
+                    Select a song
+                </h3>
+
+                <p id="playerArtist">
+                    MeloTune
+                </p>
+
+            </div>
+
+            <button id="playerFavorite" class="heart-btn">
+                ♡
+            </button>
+
+        </div>
+
+
+
+        <!-- CONTROLS -->
+
+        <div class="player-center">
+
+            <div class="player-buttons">
+
+                <button id="shuffleBtn" title="Shuffle">
+                    🔀
+                </button>
+
+                <button id="previousBtn" title="Previous">
+                    ⏮
+                </button>
+
+                <button id="playPauseBtn" class="big-play" title="Play">
+                    ▶
+                </button>
+
+                <button id="nextBtn" title="Next">
+                    ⏭
+                </button>
+
+                <button id="repeatBtn" title="Repeat">
+                    🔁
+                </button>
+
+            </div>
+
+
+            <div class="progress-container">
+
+                <span id="currentTime">
+                    0:00
+                </span>
+
+                <input
+                    type="range"
+                    id="progressBar"
+                    min="0"
+                    max="100"
+                    value="0"
+                >
+
+                <span id="duration">
+                    0:00
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- VOLUME -->
+
+        <div class="volume-control">
+
+            <span>🔊</span>
+
+            <input
+                type="range"
+                id="volumeBar"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.8"
+            >
+
+        </div>
+
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- ================= PLAYLIST MODAL ================= -->
+
+<div id="playlistModal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="close-modal" id="closeModal">
+            ✕
+        </button>
+
+        <div class="modal-icon">
+            📂
+        </div>
+
+        <h2>Create Playlist</h2>
+
+        <p>
+            Give your new playlist a name.
+        </p>
+
+        <input
+            type="text"
+            id="playlistName"
+            placeholder="My Awesome Playlist"
+            maxlength="30"
+        >
+
+        <button id="savePlaylistBtn" class="primary-btn">
+            Create Playlist
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= ADD TO PLAYLIST MODAL ================= -->
+
+<div id="addPlaylistModal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="close-modal" id="closeAddModal">
+            ✕
+        </button>
+
+        <div class="modal-icon">
+            🎵
+        </div>
+
+        <h2>Add to Playlist</h2>
+
+        <p>Select a playlist for this song.</p>
+
+        <div id="playlistChoices"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- AUDIO PLAYER -->
+
+<audio id="audioPlayer"></audio>
+
+
+
+<!-- JAVASCRIPT -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
